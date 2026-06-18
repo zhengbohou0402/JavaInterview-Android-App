@@ -1,0 +1,78 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.InterviewTraining" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_light_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorOnError">@color/md_theme_light_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_light_outline</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+    </style>
+
+    <!-- 暖橙主题：parent 同 Light，所有颜色属性重新映射到 md_theme_orange_* 系。
+         MainActivity 在 orange 模式下 setTheme 切到这个 style。 -->
+    <style name="Theme.InterviewTraining.Orange" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_orange_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_orange_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_orange_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_orange_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_orange_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_orange_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_orange_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_orange_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_orange_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_orange_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_orange_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_orange_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_orange_error</item>
+        <item name="colorOnError">@color/md_theme_orange_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_orange_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_orange_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_orange_background</item>
+        <item name="colorOnBackground">@color/md_theme_orange_onBackground</item>
+        <item name="colorSurface">@color/md_theme_orange_surface</item>
+        <item name="colorOnSurface">@color/md_theme_orange_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_orange_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_orange_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_orange_outline</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_orange_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/md_theme_orange_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_orange_inversePrimary</item>
+    </style>
+
+    <!-- 题库筛选 Chip 样式：白色/浅灰底色，和"我的"页面 AI 配置卡片统一 -->
+    <style name="ChipStyle.BankFilter" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/filter_chip_surface_color</item>
+        <item name="android:textColor">@color/md_theme_light_onSurface</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.Interview.BottomNavigation.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/elevated_surface_tint_checked</item>
+    </style>
+
+    <!-- 启动闪屏主题：用主题色作 windowBackground，冷启动不再是白屏。
+         MainActivity 在 onCreate 前 super.onCreate 里切回 Theme.InterviewTraining。 -->
+    <style name="Theme.InterviewTraining.Splash" parent="Theme.InterviewTraining">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+</resources>

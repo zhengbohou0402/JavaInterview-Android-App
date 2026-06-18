@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Speech bubble body (centered, within 18-90 safe zone) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,30 C28,25.6 31.6,22 36,22 L72,22 C76.4,22 80,25.6 80,30 L80,58 C80,62.4 76.4,66 72,66 L50,66 L38,78 L38,66 L36,66 C31.6,66 28,62.4 28,58 Z" />
+
+    <!-- Checkmark: left arm (filled parallelogram) -->
+    <path
+        android:fillColor="#0077B6"
+        android:pathData="M39,44 L47,52 L52,47 L44,39 Z" />
+    <!-- Checkmark: right arm (filled parallelogram, overlaps left arm at vertex) -->
+    <path
+        android:fillColor="#0077B6"
+        android:pathData="M49,35 L53,31 L69,47 L65,51 Z" />
+
+    <!-- Conversation dots (below bubble, decorative) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.5"
+        android:pathData="M43,82m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.35"
+        android:pathData="M54,84m-2.5,0a2.5,2.5 0,1 1,5 0a2.5,2.5 0,1 1,-5 0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.2"
+        android:pathData="M64,82m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+</vector>

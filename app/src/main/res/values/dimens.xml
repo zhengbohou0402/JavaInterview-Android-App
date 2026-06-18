@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 统一间距规范（首页重排引入） -->
+    <dimen name="page_horizontal_margin">16dp</dimen>
+    <dimen name="page_vertical_margin">16dp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_spacing">12dp</dimen>
+    <dimen name="card_inner_padding">16dp</dimen>
+    <!-- 统计数字网格 -->
+    <dimen name="stat_number_size">24sp</dimen>
+    <dimen name="stat_label_size">12sp</dimen>
+</resources>

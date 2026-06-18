@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 选中态：浅蓝（略深一点，方便区分） -->
+    <item android:color="@color/filter_chip_bg_checked" android:state_checked="true"/>
+    <!-- 未选中态：浅蓝底色 -->
+    <item android:color="@color/filter_chip_bg"/>
+</selector>

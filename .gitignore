@@ -1,0 +1,22 @@
+# Local IDE / Android build output
+.gradle/
+.idea/
+build/
+app/build/
+local.properties
+*.iml
+
+# Generated packages
+*.apk
+*.ap_
+*.aab
+
+# Native / profiling output
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Release signing material - NEVER COMMIT
+secrets/
+*.jks
+keystore.properties

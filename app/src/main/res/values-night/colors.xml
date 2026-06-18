@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="question_card_background">#222B32</color>
+    <color name="bottom_navigation_background">#222B32</color>
+    <!-- 深色主题（values-night 覆盖 md_theme_light_* 同名颜色）。
+         Material Theme Builder 标准深色调色板，保证对比度。
+         由 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES) 自动激活。 -->
+    <color name="md_theme_light_primary">#8DCDFF</color>
+    <color name="md_theme_light_onPrimary">#00344D</color>
+    <color name="md_theme_light_primaryContainer">#004B6E</color>
+    <color name="md_theme_light_onPrimaryContainer">#CAE6FF</color>
+    <color name="md_theme_light_secondary">#B7C9D8</color>
+    <color name="md_theme_light_onSecondary">#1B333F</color>
+    <color name="md_theme_light_secondaryContainer">#004B6E</color>
+    <color name="md_theme_light_onSecondaryContainer">#D3E5F5</color>
+    <color name="md_theme_light_tertiary">#8DCDFF</color>
+    <color name="md_theme_light_onTertiary">#00344D</color>
+    <color name="md_theme_light_tertiaryContainer">#004B6E</color>
+    <color name="md_theme_light_onTertiaryContainer">#CAE6FF</color>
+    <color name="md_theme_light_error">#FFB4AB</color>
+    <color name="md_theme_light_onError">#690005</color>
+    <color name="md_theme_light_errorContainer">#93000A</color>
+    <color name="md_theme_light_onErrorContainer">#FFDAD6</color>
+    <color name="md_theme_light_background">#1A1C1E</color>
+    <color name="md_theme_light_onBackground">#E2E2E6</color>
+    <color name="md_theme_light_surface">#1A1C1E</color>
+    <color name="md_theme_light_onSurface">#E2E2E6</color>
+    <color name="md_theme_light_surfaceVariant">#41474D</color>
+    <color name="md_theme_light_onSurfaceVariant">#C1C7CE</color>
+    <color name="md_theme_light_outline">#8B9198</color>
+    <color name="md_theme_light_inverseOnSurface">#1A1C1E</color>
+    <color name="md_theme_light_inverseSurface">#E2E2E6</color>
+    <color name="md_theme_light_inversePrimary">#006493</color>
+
+    <!-- 深色模式下筛选控件底色：surface #1A1C1E + primary tint -->
+    <color name="elevated_surface_tint">#222B32</color>
+    <color name="elevated_surface_tint_checked">#004B6E</color>
+    <color name="filter_chip_bg">#222B32</color>
+    <color name="filter_chip_bg_checked">#004B6E</color>
+
+    <!-- 深色模式下难度色标：提高亮度保证对比度 -->
+    <color name="difficulty_easy">#66BB6A</color>
+    <color name="difficulty_medium">#FFB74D</color>
+    <color name="difficulty_hard">#EF5350</color>
+
+    <!-- 深色模式下收藏星星描边色 -->
+    <color name="star_icon_color">#C1C7CE</color>
+</resources>

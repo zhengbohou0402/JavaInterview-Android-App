@@ -1,0 +1,48 @@
+Java面试训练 — 资料来源与开源许可
+====================================
+
+本应用以 Apache License 2.0 获得 JavaGuide 内容的使用授权。
+本应用并非 JavaGuide 官方产品，亦未经其官方认可或背书。
+
+────────────────────────────────────────
+上游资料
+────────────────────────────────────────
+
+项目名称:  JavaGuide
+版权:      Copyright JavaGuide contributors
+项目地址:  https://github.com/Snailclimb/JavaGuide
+许可协议:  Apache License, Version 2.0
+许可全文:  https://www.apache.org/licenses/LICENSE-2.0
+本地副本:  app/src/main/assets/APACHE-LICENSE-2.0.txt
+
+────────────────────────────────────────
+本应用的使用方式
+────────────────────────────────────────
+
+本应用仅在用户主动点击「立即同步」时从上游仓库拉取 Markdown
+原始文件，并在本地解析为面试题目。本应用:
+
+  - 不修改上游仓库任何内容；
+  - 不重新分发上游原始文件，只保存解析后产生的题目字段；
+  - 每道同步得到的题目均携带指向原始文件 URL 的「来源」链接，
+    用户可点击跳转到 GitHub 上的原始文件进行查阅；
+  - 仅在题库同步、题目查看、来源跳转这三种场景访问上游仓库。
+
+────────────────────────────────────────
+Apache License 2.0 许可全文（节选）
+────────────────────────────────────────
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  implied. See the License for the specific language governing
+  permissions and limitations under the License.
+
+完整许可文本随本应用一同打包（assets/APACHE-LICENSE-2.0.txt），
+也可在「我的 → 资料来源与开源许可」页面查看。

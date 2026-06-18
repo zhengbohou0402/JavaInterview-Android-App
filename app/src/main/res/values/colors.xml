@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="question_card_background">#EAF1F7</color>
+    <color name="bottom_navigation_background">#EAF6FF</color>
+    <!-- 清爽青蓝色主题 -->
+    <color name="md_theme_light_primary">#006493</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_primaryContainer">#CAE6FF</color>
+    <color name="md_theme_light_onPrimaryContainer">#001E30</color>
+    <color name="md_theme_light_secondary">#50606E</color>
+    <color name="md_theme_light_onSecondary">#FFFFFF</color>
+    <color name="md_theme_light_secondaryContainer">#CAE6FF</color>
+    <color name="md_theme_light_onSecondaryContainer">#0C1D29</color>
+    <color name="md_theme_light_tertiary">#006493</color>
+    <color name="md_theme_light_onTertiary">#FFFFFF</color>
+    <color name="md_theme_light_tertiaryContainer">#CAE6FF</color>
+    <color name="md_theme_light_onTertiaryContainer">#001E30</color>
+    <color name="md_theme_light_error">#BA1A1A</color>
+    <color name="md_theme_light_errorContainer">#FFDAD6</color>
+    <color name="md_theme_light_onError">#FFFFFF</color>
+    <color name="md_theme_light_onErrorContainer">#410002</color>
+    <color name="md_theme_light_background">#FCFCFF</color>
+    <color name="md_theme_light_onBackground">#1A1C1E</color>
+    <color name="md_theme_light_surface">#FCFCFF</color>
+    <color name="md_theme_light_onSurface">#1A1C1E</color>
+    <color name="md_theme_light_surfaceVariant">#DDE3EA</color>
+    <color name="md_theme_light_onSurfaceVariant">#41474D</color>
+    <color name="md_theme_light_outline">#72777D</color>
+    <color name="md_theme_light_inverseOnSurface">#F0F0F3</color>
+    <color name="md_theme_light_inverseSurface">#2E3133</color>
+    <color name="md_theme_light_inversePrimary">#8DCDFF</color>
+
+    <!-- ── 暖橙主题（Material Theme Builder 标准配色，基于 primary #E65100）── -->
+    <color name="md_theme_orange_primary">#006493</color>
+    <color name="md_theme_orange_onPrimary">#FFFFFF</color>
+    <color name="md_theme_orange_primaryContainer">#CAE6FF</color>
+    <color name="md_theme_orange_onPrimaryContainer">#001E30</color>
+    <color name="md_theme_orange_secondary">#50606E</color>
+    <color name="md_theme_orange_onSecondary">#FFFFFF</color>
+    <color name="md_theme_orange_secondaryContainer">#CAE6FF</color>
+    <color name="md_theme_orange_onSecondaryContainer">#001E30</color>
+    <color name="md_theme_orange_tertiary">#006493</color>
+    <color name="md_theme_orange_onTertiary">#FFFFFF</color>
+    <color name="md_theme_orange_tertiaryContainer">#CAE6FF</color>
+    <color name="md_theme_orange_onTertiaryContainer">#001E30</color>
+    <color name="md_theme_orange_error">#BA1A1A</color>
+    <color name="md_theme_orange_errorContainer">#FFDAD6</color>
+    <color name="md_theme_orange_onError">#FFFFFF</color>
+    <color name="md_theme_orange_onErrorContainer">#410002</color>
+    <color name="md_theme_orange_background">#FCFCFF</color>
+    <color name="md_theme_orange_onBackground">#1A1C1E</color>
+    <color name="md_theme_orange_surface">#FCFCFF</color>
+    <color name="md_theme_orange_onSurface">#1A1C1E</color>
+    <color name="md_theme_orange_surfaceVariant">#DDE3EA</color>
+    <color name="md_theme_orange_onSurfaceVariant">#41474D</color>
+    <color name="md_theme_orange_outline">#72777D</color>
+    <color name="md_theme_orange_inverseOnSurface">#F0F0F3</color>
+    <color name="md_theme_orange_inverseSurface">#2E3133</color>
+    <color name="md_theme_orange_inversePrimary">#8DCDFF</color>
+
+    <!-- 筛选控件底色（搜索框、Chip、下拉框统一） -->
+    <color name="filter_chip_bg">#EAF1F7</color>
+    <color name="filter_chip_bg_checked">#EAF1F7</color>
+    <!-- 模拟 MaterialCardView 2dp elevation 的 surface tint：surface #FCFCFF + primary #006493 tint -->
+    <color name="elevated_surface_tint">#EAF1F7</color>
+    <color name="elevated_surface_tint_checked">#EAF1F7</color>
+
+    <!-- 难度色标文字色（配合 bg_badge_difficulty_*.xml 的浅底） -->
+    <color name="difficulty_easy">#2E7D32</color>
+    <color name="difficulty_medium">#F57C00</color>
+    <color name="difficulty_hard">#C62828</color>
+
+    <!-- 收藏星星描边色（浅色模式） -->
+    <color name="star_icon_color">#41474D</color>
+</resources>
