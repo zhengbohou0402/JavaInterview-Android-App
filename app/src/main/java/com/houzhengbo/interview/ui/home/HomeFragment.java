@@ -25,6 +25,8 @@ import com.houzhengbo.interview.data.AppDatabase;
 import com.houzhengbo.interview.data.entity.InterviewQuestion;
 import com.houzhengbo.interview.network.GithubRepoSyncWorker;
 import com.houzhengbo.interview.network.SyncStatusManager;
+import com.houzhengbo.interview.ui.dashboard.LearningDashboardActivity;
+import com.houzhengbo.interview.ui.jd.JdMatchActivity;
 import com.houzhengbo.interview.ui.mock.MockInterviewActivity;
 import com.houzhengbo.interview.ui.practice.PracticeActivity;
 import com.houzhengbo.interview.ui.review.ReviewQueueActivity;
@@ -70,6 +72,8 @@ public class HomeFragment extends Fragment {
     private MaterialCardView cardTraining;
     private MaterialCardView cardMockInterview;
     private MaterialCardView cardReviewQueue;
+    private MaterialCardView cardJdMatch;
+    private MaterialCardView cardLearningDashboard;
 
     private AppDatabase db;
     private InterviewQuestion currentRandomQuestion;
@@ -112,10 +116,16 @@ public class HomeFragment extends Fragment {
         cardTraining.setOnClickListener(v -> showCategoryPickerDialog());
         cardMockInterview = view.findViewById(R.id.card_mock_interview);
         cardReviewQueue = view.findViewById(R.id.card_review_queue);
+        cardJdMatch = view.findViewById(R.id.card_jd_match);
+        cardLearningDashboard = view.findViewById(R.id.card_learning_dashboard);
         cardMockInterview.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), MockInterviewActivity.class)));
         cardReviewQueue.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), ReviewQueueActivity.class)));
+        cardJdMatch.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), JdMatchActivity.class)));
+        cardLearningDashboard.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), LearningDashboardActivity.class)));
 
         // Button actions
         btnDownloadLibrary.setOnClickListener(v -> startFirstDownload());

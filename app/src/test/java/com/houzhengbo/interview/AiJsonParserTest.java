@@ -59,6 +59,21 @@ public class AiJsonParserTest {
     }
 
     @Test
+    public void testExtractMessageContentStripsMarkdownFence() {
+        String json = "{\n" +
+                "  \"choices\": [\n" +
+                "    {\n" +
+                "      \"message\": {\n" +
+                "        \"content\": \"```markdown\\n## JD Match\\n- Redis\\n```\"\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}";
+        String content = AiResponseParser.extractMessageContent(json);
+        assertEquals("## JD Match\n- Redis", content);
+    }
+
+    @Test
     public void testEmptyQuestions() {
         String json = "{\n" +
                 "  \"choices\": [\n" +

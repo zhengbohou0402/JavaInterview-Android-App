@@ -121,6 +121,49 @@ public class AiResponseParser {
         return contentObj;
     }
 
+    public static String extractMessageContent(String jsonResponse) {
+        if (jsonResponse == null || jsonResponse.trim().isEmpty()) {
+            throw new RuntimeException("AI response is empty");
+        }
+
+        JsonObject root;
+        try {
+            root = JsonParser.parseString(jsonResponse).getAsJsonObject();
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot parse AI JSON response: " + e.getMessage());
+        }
+
+        if (!root.has("choices")) {
+            throw new RuntimeException("AI response is missing choices");
+        }
+
+        JsonArray choices = root.getAsJsonArray("choices");
+        if (choices == null || choices.size() == 0) {
+            throw new RuntimeException("AI response choices is empty");
+        }
+
+        JsonObject firstChoice = choices.get(0).getAsJsonObject();
+        JsonObject message = firstChoice.getAsJsonObject("message");
+        if (message == null || !message.has("content")) {
+            throw new RuntimeException("AI response is missing message.content");
+        }
+
+        String content = message.get("content").getAsString();
+        if (content == null) return "";
+        content = content.trim();
+        if (content.startsWith("```json")) {
+            content = content.substring(7);
+        } else if (content.startsWith("```markdown")) {
+            content = content.substring(11);
+        } else if (content.startsWith("```")) {
+            content = content.substring(3);
+        }
+        if (content.endsWith("```")) {
+            content = content.substring(0, content.length() - 3);
+        }
+        return content.trim();
+    }
+
     /**
      * Parses the AI response when evaluating a candidate's answer.
      * Validates that "score", "hitPoints", "missingPoints", "improvedAnswer", and "followUpQuestion" are present,
