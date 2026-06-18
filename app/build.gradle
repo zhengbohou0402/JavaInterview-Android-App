@@ -136,6 +136,10 @@ dependencies {
 
     // Markdown parser
     implementation 'org.commonmark:commonmark:0.21.0'
+    // GFM 表格扩展：markwon-ext-tables 的 TablePlugin 内部依赖
+    // org.commonmark.ext.gfm.tables.TablesExtension，必须显式提供同版本，
+    // 否则运行时 NoClassDefFoundError（之前为绕开该错误禁用了表格渲染）。
+    implementation 'org.commonmark:commonmark-ext-gfm-tables:0.21.0'
     implementation ('io.noties.markwon:core:4.6.2') {
         exclude group: 'com.atlassian.commonmark', module: 'commonmark'
     }

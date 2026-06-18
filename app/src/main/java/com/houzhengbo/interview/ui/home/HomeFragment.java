@@ -25,7 +25,9 @@ import com.houzhengbo.interview.data.AppDatabase;
 import com.houzhengbo.interview.data.entity.InterviewQuestion;
 import com.houzhengbo.interview.network.GithubRepoSyncWorker;
 import com.houzhengbo.interview.network.SyncStatusManager;
+import com.houzhengbo.interview.ui.mock.MockInterviewActivity;
 import com.houzhengbo.interview.ui.practice.PracticeActivity;
+import com.houzhengbo.interview.ui.review.ReviewQueueActivity;
 import com.houzhengbo.interview.ui.training.TrainingActivity;
 import com.houzhengbo.interview.utils.DbExecutor;
 
@@ -66,6 +68,8 @@ public class HomeFragment extends Fragment {
 
     // ── Specialized Training card ─────────────────────────────────────────────
     private MaterialCardView cardTraining;
+    private MaterialCardView cardMockInterview;
+    private MaterialCardView cardReviewQueue;
 
     private AppDatabase db;
     private InterviewQuestion currentRandomQuestion;
@@ -106,6 +110,12 @@ public class HomeFragment extends Fragment {
         // ── Training card ─────────────────────────────────────────────────
         cardTraining = view.findViewById(R.id.card_training);
         cardTraining.setOnClickListener(v -> showCategoryPickerDialog());
+        cardMockInterview = view.findViewById(R.id.card_mock_interview);
+        cardReviewQueue = view.findViewById(R.id.card_review_queue);
+        cardMockInterview.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), MockInterviewActivity.class)));
+        cardReviewQueue.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), ReviewQueueActivity.class)));
 
         // Button actions
         btnDownloadLibrary.setOnClickListener(v -> startFirstDownload());

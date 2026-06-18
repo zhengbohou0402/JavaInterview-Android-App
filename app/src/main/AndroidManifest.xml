@@ -31,6 +31,8 @@
         <activity android:name=".ui.practice.PracticeActivity" />
         <activity android:name=".ui.practice.AnswerActivity" />
         <activity android:name=".ui.training.TrainingActivity" />
+        <activity android:name=".ui.review.ReviewQueueActivity" />
+        <activity android:name=".ui.mock.MockInterviewActivity" />
         <activity android:name=".ui.profile.LicensesActivity" />
 
         <receiver

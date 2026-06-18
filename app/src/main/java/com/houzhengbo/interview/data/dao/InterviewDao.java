@@ -163,6 +163,30 @@ public interface InterviewDao {
     @Query("SELECT * FROM interview_question WHERE archived = 0 AND nextReviewTime <= :currentTime AND attemptCount > 0 ORDER BY nextReviewTime ASC LIMIT 1")
     InterviewQuestion getNextReviewQuestion(long currentTime);
 
+    @Query("SELECT * FROM interview_question WHERE archived = 0 AND attemptCount > 0 " +
+           "AND ((nextReviewTime > 0 AND nextReviewTime <= :currentTime) OR masteryLevel < 60) " +
+           "ORDER BY CASE WHEN nextReviewTime > 0 AND nextReviewTime <= :currentTime THEN 0 ELSE 1 END, " +
+           "lastScore ASC, nextReviewTime ASC, lastPracticedAt ASC, id ASC LIMIT :limit")
+    List<InterviewQuestion> getReviewQueue(long currentTime, int limit);
+
+    @Query("SELECT * FROM interview_question WHERE archived = 0 AND attemptCount > 0 " +
+           "AND ((nextReviewTime > 0 AND nextReviewTime <= :currentTime) OR masteryLevel < 60) " +
+           "ORDER BY lastScore ASC, RANDOM() LIMIT :limit")
+    List<InterviewQuestion> getMockDueQuestions(long currentTime, int limit);
+
+    @Query("SELECT * FROM interview_question WHERE archived = 0 " +
+           "AND (sourceType IN ('CUSTOM', 'RESUME') OR sourceRepository = 'custom/resume' OR parentCategory = '简历专项') " +
+           "ORDER BY RANDOM() LIMIT :limit")
+    List<InterviewQuestion> getMockProjectQuestions(int limit);
+
+    @Query("SELECT * FROM interview_question WHERE archived = 0 " +
+           "AND NOT (sourceType IN ('CUSTOM', 'RESUME') OR sourceRepository = 'custom/resume' OR parentCategory = '简历专项') " +
+           "ORDER BY CASE WHEN attemptCount = 0 THEN 0 ELSE 1 END, RANDOM() LIMIT :limit")
+    List<InterviewQuestion> getMockKnowledgeQuestions(int limit);
+
+    @Query("SELECT * FROM interview_question WHERE archived = 0 ORDER BY RANDOM() LIMIT :limit")
+    List<InterviewQuestion> getRandomActiveQuestions(int limit);
+
     @Query("DELETE FROM interview_question WHERE sourceDocumentPath = :path")
     void deleteQuestionsBySourcePath(String path);
 
