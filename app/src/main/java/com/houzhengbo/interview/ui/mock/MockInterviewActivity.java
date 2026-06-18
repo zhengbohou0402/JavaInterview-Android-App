@@ -81,6 +81,7 @@ public class MockInterviewActivity extends AppCompatActivity {
         btnToggleAnswer.setOnClickListener(v -> toggleAnswer());
         btnRestart.setOnClickListener(v -> showSetup());
         findViewById(R.id.btn_score_0).setOnClickListener(v -> submitScore(0));
+        findViewById(R.id.btn_score_20).setOnClickListener(v -> submitScore(20));
         findViewById(R.id.btn_score_40).setOnClickListener(v -> submitScore(40));
         findViewById(R.id.btn_score_60).setOnClickListener(v -> submitScore(60));
         findViewById(R.id.btn_score_80).setOnClickListener(v -> submitScore(80));
