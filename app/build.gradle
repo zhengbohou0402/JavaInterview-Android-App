@@ -1,0 +1,164 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.houzhengbo.interview'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.houzhengbo.interview"
+        minSdk 26
+        targetSdk 34
+        versionCode 5
+        versionName "1.3.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    // Read signing material from secrets/keystore.properties. The file is
+    // intentionally kept out of git (see .gitignore). A release build is
+    // considered invalid if the properties file or the keystore it points to
+    // is missing — the build fails fast with a clear message instead of
+    // silently generating a new keystore.
+    def keystoreProperties = new Properties()
+    def keystorePropertiesFile = rootProject.file('secrets/keystore.properties')
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.withInputStream { keystoreProperties.load(it) }
+    }
+
+    def hasReleaseSigning = keystoreProperties.containsKey('storeFile') &&
+            keystoreProperties.containsKey('storePassword') &&
+            keystoreProperties.containsKey('keyAlias') &&
+            keystoreProperties.containsKey('keyPassword')
+
+    if (hasReleaseSigning) {
+        def releaseStoreFile = rootProject.file(keystoreProperties['storeFile'])
+        if (!releaseStoreFile.exists()) {
+            throw new GradleException(
+                "Release keystore not found at ${releaseStoreFile.absolutePath}. " +
+                "Restore secrets/interview-release.jks before building a signed release. " +
+                "Do NOT generate a new keystore — that would make the release uninstallable for existing users.")
+        }
+    }
+    // Whether a missing keystore is a hard error is decided per buildType below:
+    // debug / unit-test / CI builds stay usable; assembling a *release* without
+    // a keystore fails fast (see the release buildType block).
+
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile rootProject.file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
+    }
+
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            }
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    gradle.taskGraph.whenReady { graph ->
+        def requestedReleaseBuild = graph.allTasks.any { task ->
+            def name = task.name.toLowerCase(java.util.Locale.ROOT)
+            name.contains("release") &&
+                    (name.startsWith("assemble") ||
+                            name.startsWith("bundle") ||
+                            name.startsWith("package") ||
+                            name.startsWith("validate"))
+        }
+        if (requestedReleaseBuild && !hasReleaseSigning) {
+            // A release APK must be signed with the project's official keystore.
+            // Debug builds, unit tests, and CI checks stay usable in fresh clones.
+            throw new GradleException(
+                "Cannot assemble a release without secrets/keystore.properties. " +
+                "Provide storeFile/storePassword/keyAlias/keyPassword " +
+                "(pointing to secrets/interview-release.jks) before building a release. " +
+                "Use debug builds for CI / fresh clones.")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    testOptions {
+        unitTests.all {
+            useJUnit()
+        }
+        unitTests {
+            all { test ->
+                test.systemProperty 'file.encoding', 'UTF-8'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.7.0'
+    implementation 'androidx.navigation:navigation-fragment:2.7.7'
+    implementation 'androidx.navigation:navigation-ui:2.7.7'
+    implementation "androidx.room:room-runtime:2.6.1"
+    annotationProcessor "androidx.room:room-compiler:2.6.1"
+    testImplementation "androidx.room:room-testing:2.6.1"
+    implementation "androidx.work:work-runtime:2.9.0"
+
+    // Markdown parser
+    implementation 'org.commonmark:commonmark:0.21.0'
+    implementation ('io.noties.markwon:core:4.6.2') {
+        exclude group: 'com.atlassian.commonmark', module: 'commonmark'
+    }
+    implementation ('io.noties.markwon:ext-tables:4.6.2') {
+        exclude group: 'com.atlassian.commonmark', module: 'commonmark-ext-gfm-tables'
+        exclude group: 'com.atlassian.commonmark', module: 'commonmark'
+    }
+    implementation ('io.noties.markwon:ext-tasklist:4.6.2') {
+        exclude group: 'com.atlassian.commonmark', module: 'commonmark'
+    }
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.arch.core:core-testing:2.2.0'
+    testImplementation 'androidx.room:room-testing:2.6.1'
+    androidTestImplementation 'androidx.room:room-testing:2.6.1'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+task runGroovyScript {
+    doLast {
+        def shell = new GroovyShell()
+        shell.evaluate(new File(projectDir.parentFile, "extract-test.groovy"))
+    }
+}

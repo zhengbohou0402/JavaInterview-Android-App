@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 选中态：略深一点的蓝灰，区分选中 -->
+    <item android:color="@color/elevated_surface_tint_checked" android:state_checked="true"/>
+    <!-- 未选中态：和搜索框、专项训练卡片统一的微蓝白 -->
+    <item android:color="@color/elevated_surface_tint"/>
+</selector>

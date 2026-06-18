@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Java面试训练</string>
+    <string name="title_home">首页</string>
+    <string name="title_bank">题库</string>
+    <string name="title_profile">我的</string>
+    <string name="title_practice">练习</string>
+    <string name="action_submit">提交</string>
+    <string name="action_skip">跳过</string>
+    <string name="action_next">下一题</string>
+    <string name="prompt_ai_provider">AI提供商 (DeepSeek/OpenAI)</string>
+    <string name="prompt_api_key">API Key (加密保存)</string>
+    <string name="prompt_base_url">Base URL</string>
+    <string name="prompt_model">模型名称</string>
+    <string name="data_sources_and_licenses">数据来源与开源许可</string>
+    <string name="view_full_license">查看完整 Apache License 2.0</string>
+    <string name="javaguide_attribution">JavaGuide\nCopyright JavaGuide contributors\nhttps://github.com/Snailclimb/JavaGuide\nLicensed under the Apache License, Version 2.0\n\n免责声明：本应用不是 JavaGuide 的官方产品。本应用使用 JavaGuide 的内容，并遵守 Apache License 2.0 许可。</string>
+</resources>
