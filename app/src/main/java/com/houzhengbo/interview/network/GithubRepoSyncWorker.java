@@ -600,6 +600,10 @@ public class GithubRepoSyncWorker extends Worker {
         if (lp.startsWith("docs/cs-basics/algorithms/")) return "算法";
         if (lp.startsWith("docs/cs-basics/"))            return "计算机基础";
         if (lp.startsWith("docs/ai/"))                   return "AI";
+        if (lp.contains("smartcloud-interview-question-bank")
+                || lp.contains("smartcloud-agent-rag-tools-interview")
+                || lp.contains("smartcloud-claude-code-inspired-interview")
+                || lp.contains("multi-agent-architecture")) return "AI";
         return "综合";
     }
 
@@ -610,6 +614,10 @@ public class GithubRepoSyncWorker extends Worker {
         if (lp.endsWith("/agent-interview-questions.md"))                  return "AI Agent";
         if (lp.endsWith("/rag-interview-questions.md"))                    return "RAG";
         if (lp.endsWith("/ai-system-design-interview-questions.md"))       return "AI 系统设计";
+        if (lp.endsWith("smartcloud-interview-question-bank.md"))          return "SmartCloud 总览";
+        if (lp.endsWith("smartcloud-agent-rag-tools-interview.md"))        return "SmartCloud Agent/RAG";
+        if (lp.endsWith("smartcloud-claude-code-inspired-interview.md"))   return "SmartCloud Claude Code";
+        if (lp.endsWith("multi-agent-architecture.md"))                    return "SmartCloud 补充";
         if (lp.contains("collection"))                                       return "集合";
         if (lp.contains("concurrent") || lp.contains("thread"))             return "并发";
         if (lp.contains("jvm"))                                              return "JVM";
