@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +25,7 @@ public class PracticeActivity extends AppCompatActivity {
     private EditText etAnswerInput;
     private Button btnSubmit, btnSkip, btnShowAnswer;
     private ProgressBar progressAi;
-    private LinearLayout llFeedback;
+    private View llFeedback;
     private io.noties.markwon.Markwon markwon;
 
     private AppDatabase db;
@@ -47,11 +46,12 @@ public class PracticeActivity extends AppCompatActivity {
         progressAi = findViewById(R.id.progress_ai);
         llFeedback = findViewById(R.id.ll_feedback);
 
-        // 初始化 Markwon 核心渲染器，把题库里的 ** ## `代码` 等标记渲染成真正样式。
-        // 不加载 TablePlugin/TaskListPlugin——它们依赖 commonmark-ext-gfm-tables，
-        // 而 build.gradle 里排除了该传递依赖（避免与 org.commonmark 0.21.0 冲突）。
-        // 核心 Markwon 已足够覆盖题目答案里的粗体/标题/列表/行内代码，这正是核心诉求。
-        markwon = io.noties.markwon.Markwon.create(this);
+        // 初始化 Markwon：核心 + 表格插件（GFM 表格 | col | col | 渲染成真表格）。
+        // build.gradle 已显式提供 org.commonmark:commonmark-ext-gfm-tables:0.21.0，
+        // TablePlugin 内部依赖的 TablesExtension 运行时可用，不会再 NoClassDefFoundError。
+        markwon = io.noties.markwon.Markwon.builder(this)
+                .usePlugin(io.noties.markwon.ext.tables.TablePlugin.create(this))
+                .build();
 
         // 参考答案在独立页面展示，返回后当前答题内容和评分结果会保留。
         btnShowAnswer = findViewById(R.id.btn_show_answer);

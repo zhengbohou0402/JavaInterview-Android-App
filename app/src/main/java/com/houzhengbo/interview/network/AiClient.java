@@ -196,5 +196,67 @@ public class AiClient {
             return resBody.string();
         }
     }
-}
 
+    public String analyzeJdMatch(AppSettings settings, String resumeContent, String jdContent) throws IOException {
+        String baseUrl;
+        if (baseUrlOverride != null) {
+            baseUrl = baseUrlOverride;
+        } else {
+            baseUrl = settings.aiBaseUrl != null && !settings.aiBaseUrl.isEmpty() ? settings.aiBaseUrl : "https://api.deepseek.com/v1/";
+            if (!baseUrl.startsWith("https://")) {
+                throw new IOException("Base URL must use HTTPS");
+            }
+        }
+        if (!baseUrl.endsWith("/")) baseUrl += "/";
+        if (baseUrl.endsWith("chat/completions/")) baseUrl = baseUrl.replace("chat/completions/", "");
+
+        String model = settings.aiModel != null && !settings.aiModel.isEmpty() ? settings.aiModel : "deepseek-chat";
+        String apiKey = apiKeyProvider.getApiKey();
+        if (apiKey == null || apiKey.isEmpty()) {
+            throw new IOException("API Key not configured");
+        }
+
+        JsonObject systemMsg = new JsonObject();
+        systemMsg.addProperty("role", "system");
+        systemMsg.addProperty("content",
+                "你是一个 Java 后端实习/校招面试辅导官。请根据候选人简历和岗位 JD 做匹配分析，"
+                        + "要求务实，不要编造简历中没有的项目数据。输出 Markdown，包含："
+                        + "1. 匹配度判断；2. JD 要求命中点；3. 风险短板；4. 面试高频追问；"
+                        + "5. 针对候选人项目的回答准备建议。");
+
+        JsonObject userMsg = new JsonObject();
+        userMsg.addProperty("role", "user");
+        userMsg.addProperty("content",
+                "【候选人简历】\n" + resumeContent + "\n\n"
+                        + "【岗位 JD】\n" + jdContent + "\n\n"
+                        + "请输出中文 Markdown 报告。注意：如果需要量化数据，只能提示候选人补充真实数据，"
+                        + "不要虚构 QPS、并发量、用户量、收益等数字。");
+
+        JsonArray messages = new JsonArray();
+        messages.add(systemMsg);
+        messages.add(userMsg);
+
+        JsonObject bodyObj = new JsonObject();
+        bodyObj.addProperty("model", model);
+        bodyObj.add("messages", messages);
+        bodyObj.addProperty("temperature", 0.2);
+
+        RequestBody body = RequestBody.create(gson.toJson(bodyObj), MediaType.parse("application/json"));
+        Request request = new Request.Builder()
+                .url(baseUrl + "chat/completions")
+                .header("Authorization", "Bearer " + apiKey)
+                .post(body)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                if (response.code() == 429) throw new IOException("Rate limit exceeded (429)");
+                if (response.code() == 401) throw new IOException("Unauthorized (401) - Check API Key");
+                throw new IOException("Unexpected code " + response);
+            }
+            ResponseBody resBody = response.body();
+            if (resBody == null) throw new IOException("Empty response body");
+            return resBody.string();
+        }
+    }
+}

@@ -30,6 +30,7 @@ public class AnswerActivity extends AppCompatActivity {
     private TextView tvAnswer;
     private TextView tvEmpty;
     private TextView tvCustomHint;
+    private View cardAnswerContent;
     private Button btnEditAnswer;
     private Markwon markwon;
     private AppDatabase db;
@@ -47,6 +48,7 @@ public class AnswerActivity extends AppCompatActivity {
         tvAnswer = findViewById(R.id.tv_answer_content);
         tvEmpty = findViewById(R.id.tv_answer_empty);
         tvCustomHint = findViewById(R.id.tv_answer_custom_hint);
+        cardAnswerContent = findViewById(R.id.card_answer_content);
         btnEditAnswer = findViewById(R.id.btn_edit_answer);
         markwon = Markwon.create(this);
         db = InterviewApplication.getInstance().getDatabase();
@@ -81,9 +83,11 @@ public class AnswerActivity extends AppCompatActivity {
 
         if (answer.isEmpty()) {
             tvAnswer.setVisibility(View.GONE);
+            cardAnswerContent.setVisibility(View.GONE);
             tvEmpty.setVisibility(View.VISIBLE);
         } else {
             tvEmpty.setVisibility(View.GONE);
+            cardAnswerContent.setVisibility(View.VISIBLE);
             tvAnswer.setVisibility(View.VISIBLE);
             markwon.setMarkdown(tvAnswer, answer);
         }

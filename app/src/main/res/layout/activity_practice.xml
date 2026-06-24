@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:clipToPadding="false"
     android:fillViewport="true"
     tools:context=".ui.practice.PracticeActivity">
 
@@ -13,24 +15,44 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_question_text"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_practice_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:text="什么是Java中的多态？" />
+            app:cardBackgroundColor="@color/question_card_background"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="0dp"
+            app:strokeColor="?attr/colorOutline"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/tv_source_link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="?attr/colorPrimary"
-            android:textSize="12sp"
-            android:visibility="gone"
-            tools:text="来源: JavaGuide"
-            tools:visibility="visible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_inner_padding">
+
+                <TextView
+                    android:id="@+id/tv_question_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="什么是 Java 中的多态？" />
+
+                <TextView
+                    android:id="@+id/tv_source_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:text="来源: JavaGuide"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <EditText
             android:id="@+id/et_answer_input"
@@ -38,18 +60,20 @@
             android:layout_height="150dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_text_input_surface"
             android:gravity="top|start"
             android:hint="请输入你的回答..."
             android:inputType="textMultiLine"
-            android:background="@android:drawable/edit_text"
-            android:padding="8dp"/>
+            android:padding="14dp"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant" />
 
         <LinearLayout
             android:id="@+id/ll_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_skip"
@@ -79,33 +103,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/ll_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginTop="16dp"
             android:visibility="gone"
-            android:layout_marginTop="16dp">
+            app:cardBackgroundColor="@color/question_card_background"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="0dp"
+            app:strokeColor="?attr/colorOutline"
+            app:strokeWidth="1dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AI 评分与反馈"
-                android:textStyle="bold"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/tv_ai_feedback"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textIsSelectable="true"
-                android:lineSpacingExtra="4dp" />
+                android:orientation="vertical"
+                android:padding="@dimen/card_inner_padding">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="AI 评分与反馈"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_ai_feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textIsSelectable="true" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>
